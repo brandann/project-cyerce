@@ -1,0 +1,174 @@
+/* nav bar */
+/* ------------------------------------------------------------------------------------------- */
+
+.nav{
+	background-color: #555555;
+	color: #000000;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 0px 10px;
+  text-transform: uppercase;
+    border-radius: 5px;
+}
+
+.nav a {
+  color: #fff000;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 0px 10px;
+  text-transform: uppercase;
+}
+
+.nav a:hover {
+	background: #555555;
+	 color: #000000;
+	 font-style: none;
+}
+
+a:hover {
+	background: #333333;
+	 color: #fff000;
+	 font-style: none;
+}
+
+.nav li {
+  display: inline;
+}
+
+.nav img {
+  display: inline;
+}
+
+/* game */
+/* ------------------------------------------------------------------------------------------- */
+
+.game img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
+}
+
+.game img:hover {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
+	border-style: inset;
+    border-width: 2px;
+	border-color: #fff000;
+}
+
+.simple img{
+	display: inline;
+	    margin-left: auto;
+    margin-right: auto;
+}
+
+.simple img:hover {
+	border-width: 0px;
+	display: inline;
+}
+
+.game h3 {
+	color: #fff666;
+}
+
+body {
+    background-color: #222222;
+	color: #bbbbbb;
+	font-size: 12px;
+}
+
+	a {
+		color: #fff555;
+	}
+	
+	a:hover {
+		color: #ffb000;
+	}
+	
+	h1{
+		color: #fff000;
+	}
+	
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+		border-radius: 5px;
+}
+
+.main-games {
+    background-color: #333333;
+    width:70%;
+    height:100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+	padding: 20px 10px;
+}
+
+.main-games h3 {
+	color: #fff666;
+}
+
+IMG.displayed {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+	}
+	
+hr { 
+    display: block;
+    margin-top:5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 0px;
+	color: #fff000;
+}
+
+.gametitle p {
+	color: #fff000;
+	font-size: 20px;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.btn {
+    background-color: #222222;
+    border-color: #555555;
+    color: #fff000;
+}
+
+.btn:hover {
+    background-color: #fff000;
+    border-color: #555555;
+    color: #222222;
+}
+
+/*Added css to force align nav and name, only works with image this size*/
+ul.pull-right {
+	margin-top: 8px;
+}
+
+/*Creates a 9px gap*/
+br.9pxbr {
+	margin-top: 9px;
+	}
+
+/*Keeps drop down nav item inline with the rest*/
+.dropdown {
+	display:inline-block; 
+	background-color:#555555;
+	}
+	
+	
+.dropdown ul {
+	background-color:#878585;
+}
