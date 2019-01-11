@@ -9,6 +9,7 @@
   padding: 0px 10px;
   text-transform: uppercase;
     border-radius: 5px;
+	font-family?: Verdana;
 }
 
 .nav a {
@@ -72,12 +73,14 @@ a:hover {
 
 .game h3 {
 	color: #fff666;
+	font-family?: Verdana;
 }
 
 body {
     background-color: #222222;
 	color: #bbbbbb;
 	font-size: 12px;
+	font-family?: Verdana;
 }
 
 	a {
