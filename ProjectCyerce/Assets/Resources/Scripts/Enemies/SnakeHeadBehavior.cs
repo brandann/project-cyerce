@@ -27,7 +27,6 @@ public class SnakeHeadBehavior : MonoBehaviour
 
 	void Start()
 	{
-        print("here");
 		_rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
 		//Global.mGlobal.OnLevelEnd += MGlobal_OnLevelEnd;
 		this.Init();

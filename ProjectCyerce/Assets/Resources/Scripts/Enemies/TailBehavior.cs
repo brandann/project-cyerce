@@ -8,6 +8,7 @@ public class TailBehavior : MonoBehaviour {
 	private TailBehavior MyTailObject;
 	private SpriteRenderer _spriteRenderer;
 	public GameObject TailPrefab;
+    public float TailDistance; //0.075f
 
 	private bool isChase = false;
 
@@ -53,7 +54,7 @@ public class TailBehavior : MonoBehaviour {
             return;
 
         var dist = this.transform.position - mParent.transform.position;
-        dist *= .075f * Time.timeScale;
+        dist *= TailDistance * Time.timeScale;
         //dist *= .075f;
         this.transform.position -= dist;
 	}
