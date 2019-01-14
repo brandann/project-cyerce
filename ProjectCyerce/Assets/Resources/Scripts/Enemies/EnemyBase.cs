@@ -56,13 +56,13 @@ public class EnemyBase : MonoBehaviour
         if (CurrentHeath <= 0)
             EnemyDeath();
         CurrentHeath = Mathf.Clamp(CurrentHeath, 0, MaxHeath);
+        print("Enemy Took " + dmg + ", Health at " + CurrentHeath);
     }
 
-    public virtual void EnemyDeath()
+    protected virtual void EnemyDeath()
     {
         isAlive = false;
         print("Enemy Death");
-        Destroy(this);
     }
 
     protected void SetMaxHealth(int i)

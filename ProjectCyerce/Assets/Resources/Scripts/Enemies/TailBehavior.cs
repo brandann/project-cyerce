@@ -25,8 +25,10 @@ public class TailBehavior : MonoBehaviour {
 
 	private void OnDestroy()
 	{
-		//Global.mGlobal.OnLevelEnd -= MGlobal_OnLevelEnd;
-	}
+        //Global.mGlobal.OnLevelEnd -= MGlobal_OnLevelEnd;
+        if(null != MyTailObject)
+            Destroy(MyTailObject.gameObject);
+    }
 
 	void MGlobal_OnLevelEnd()
 	{
