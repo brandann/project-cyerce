@@ -8,6 +8,9 @@ TagManager:
   - Player/player
   - Player/player1
   - Player/player2
+  - Enemy/Snake
+  - Enemy/Turret
+  - Wall
   layers:
   - Default
   - TransparentFX

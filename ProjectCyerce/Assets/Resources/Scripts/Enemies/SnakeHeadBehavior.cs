@@ -7,7 +7,6 @@ public class SnakeHeadBehavior : EnemyBase
 	private Rigidbody2D _rigidbody2D;
 	private Vector2 _oldVelocity;
     private const float CHASE_SPEED = 2f;
-    private const float DIST_TRACK_PLAYER = 12f;
     private float CurrentSpeed;
 
     // BODY
@@ -15,21 +14,16 @@ public class SnakeHeadBehavior : EnemyBase
     private TailBehavior MyTailObject;
     private SpriteRenderer _spriteRenderer;
 
-    // STATE
-    private bool isChase = false;
-
 	void Start()
 	{
 		_rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
 		//Global.mGlobal.OnLevelEnd += MGlobal_OnLevelEnd;
-		this.InitSnake();
-		CurrentSpeed = 0;
+		
+		CurrentSpeed = Speed = 0.5f;
+        PlayerPatrolDist = 8;
 		_spriteRenderer = this.GetComponent<SpriteRenderer>();
-	}
 
-    public void InitSnake()
-    {
-        _rigidbody2D.velocity = Random.insideUnitCircle.normalized * speed;
+        _rigidbody2D.velocity = Random.insideUnitCircle.normalized * Speed;
 
         if (null != MyTailObject)
             return;
@@ -37,8 +31,8 @@ public class SnakeHeadBehavior : EnemyBase
         go.transform.position = this.transform.position;
         MyTailObject = go.GetComponent<TailBehavior>();
         MyTailObject.SetParent(this.gameObject);
-        speed = 0.5f;
         SetMaxHealth(3);
+        SetDamageOnCollisionWithPlayer(1);
     }
 
     private void OnEnable()
@@ -73,39 +67,31 @@ public class SnakeHeadBehavior : EnemyBase
 
     private void FixedUpdate()
 	{
-        if (ChaseHero())
-        {
-			UpdateChase(true);
-        }
-        else
-        {
-			UpdateChase(false);
-		}
-            
+        ChaseHero();
+        UpdateChase();
+		
 		_oldVelocity = _rigidbody2D.velocity;
 	}
 
-	private void UpdateChase(bool c)
+	private void UpdateChase()
 	{
-		if (c == isChase)
-			return;
+        var isChase = (CurrentState == State.CHASE);
 
-		isChase = c;
 		_spriteRenderer.color = (isChase ? Color.red : Color.white);
 		MyTailObject.SetChase(isChase);
-		CurrentSpeed = (isChase ? CHASE_SPEED : speed);
+		CurrentSpeed = (isChase ? CHASE_SPEED : Speed);
 	}
 
     private void LateUpdate()
     {
-        _rigidbody2D.velocity = speed * _rigidbody2D.velocity.normalized * CurrentSpeed;
+        _rigidbody2D.velocity = Speed * _rigidbody2D.velocity.normalized * CurrentSpeed;
     }
 
     void OnCollisionEnter2D(Collision2D c)
 	{
 		if (c.gameObject.tag.Contains(PLAYER1_TAG) || c.gameObject.tag.Contains(PLAYER2_TAG))
 		{
-            //c.gameObject.SendMessage("kill", this.gameObject.tag);
+            BumpPlayer(c.gameObject);
             Debug.Log("Snake Hit The Player");
 		}
         else
@@ -121,33 +107,28 @@ public class SnakeHeadBehavior : EnemyBase
        //_rigidbody2D.velocity = Vector2.Reflect(_oldVelocity, go.GetComponent<PaceEnemy>().GetCurrentDirection());
     }
 
-    private bool ChaseHero()
+    private void ChaseHero()
     {
         //TODO add player 2 tracking
 
         // GOT THE HERO OBJECT!
-        var dist = this.transform.position - Player1Position; // DIST BETWEEN PLAYER AND PLANET
+        var dist = this.transform.position - GetNearestPlayerPosition(); // DIST BETWEEN PLAYER AND PLANET
 
-        if (dist.magnitude > DIST_TRACK_PLAYER)
-            return false;
+        if (dist.magnitude > PlayerPatrolDist)
+        {
+            CurrentState = State.PATROL;
+            return;
+        }
+
 
         var small_norm = dist.normalized * CHASE_SPEED; //VELOCITY_SPEED_TO_PLAYER; // 1/10TH OF THE NORMAILZED DISTANCE BETWEEN PLAYER AND PLANET
         _rigidbody2D.velocity -= new Vector2(small_norm.x, small_norm.y);
-        return true;
-    }
-
-    public void OnMouseDown()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            TakeDamage(1);
-        }
+        CurrentState = State.CHASE;
     }
 
     protected override void EnemyDeath()
     {
-        base.EnemyDeath();
         Destroy(MyTailObject.gameObject);
-        Destroy(this.gameObject);
+        base.EnemyDeath();
     }
 }
