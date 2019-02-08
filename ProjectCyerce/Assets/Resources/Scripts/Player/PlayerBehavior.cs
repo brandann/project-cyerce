@@ -8,6 +8,8 @@ public class PlayerBehavior : MonoBehaviour
     protected int CurrentHeath;
     protected int MaxHeath;
 
+    protected int GoldValue = 10;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,5 +33,24 @@ public class PlayerBehavior : MonoBehaviour
         var go = GameObject.FindWithTag("MainCamera");
         if (null != go)
             go.GetComponent<Follow2Players>().Shake(.02f, 1f);
+    }
+
+    public int GetGoldValue()
+    {
+        return GoldValue;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag.Contains("GoldCoin"))
+        {
+            var go = collision.gameObject.GetComponent<GoldCoinBehavior>();
+            if (null != go)
+            {
+                GoldValue += go.GoldValue;
+                Destroy(collision.gameObject);
+            }
+
+        }
     }
 }

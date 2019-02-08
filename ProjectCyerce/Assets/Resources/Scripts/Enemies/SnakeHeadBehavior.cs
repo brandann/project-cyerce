@@ -101,6 +101,12 @@ public class SnakeHeadBehavior : EnemyBase
         }
 	}
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag.Contains("Box/"))
+            _rigidbody2D.velocity = Vector2.Reflect(_oldVelocity, collision.gameObject.transform.position.normalized);
+    }
+
     // this is used when interacting with the pace object
     public void RelfectMyDirection(GameObject go)
     {

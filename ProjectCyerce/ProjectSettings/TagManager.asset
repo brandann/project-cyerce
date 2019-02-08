@@ -11,6 +11,10 @@ TagManager:
   - Enemy/Snake
   - Enemy/Turret
   - Wall
+  - GoldCoin
+  - Box/Breakable
+  - Projectile/Simple
+  - Projectile/Simple-Enemy
   layers:
   - Default
   - TransparentFX
