@@ -35,9 +35,11 @@ public class AreaSpawner : MonoBehaviour
         switch(Ftag)
         {
             case FieldSpawner.FieldTags.None:
+                Destroy(gameObject);
                 break;
             case FieldSpawner.FieldTags.Start:
                 this.GetComponent<SpriteRenderer>().color = Color.green;
+                print("Start POS = " + this.transform.position);
                 Instantiate(StartAreaPrefab, transform.position, transform.rotation);
                 break;
             case FieldSpawner.FieldTags.ShopO:
@@ -54,6 +56,9 @@ public class AreaSpawner : MonoBehaviour
                 break;
             case FieldSpawner.FieldTags.Dun3:
                 this.GetComponent<SpriteRenderer>().color = new Color(.25f, .25f, .25f, 1);
+                break;
+            default:
+                Destroy(this.gameObject);
                 break;
 
         }

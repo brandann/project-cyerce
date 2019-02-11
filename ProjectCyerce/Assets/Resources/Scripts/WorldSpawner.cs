@@ -34,8 +34,9 @@ public class WorldSpawner : MonoBehaviour
         InitFieldTag(FieldSpawner.FieldTags.Dun2);
         InitFieldTag(FieldSpawner.FieldTags.Dun3);
 
-        var SP = GameObject.FindWithTag("Map/StartNode").transform.position;
-        Instantiate(HeroPrefab, SP, transform.rotation);
+        var SP = GameObject.FindWithTag("Map/StartNode").transform;
+        print("World Start POS = " + SP.position);
+        Instantiate(HeroPrefab, SP.position, SP.rotation);
     }
 
     private void InitFieldTag(FieldSpawner.FieldTags t)

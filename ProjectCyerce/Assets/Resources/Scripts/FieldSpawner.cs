@@ -9,6 +9,13 @@ public class FieldSpawner : MonoBehaviour
     public AreaSpawner[] AreaSpawners;
     public FieldTags CurrentTag = FieldTags.None;
 
+    bool initState = false;
+    public bool GetInitState
+    {
+        get { return initState; }
+        private set { initState = value; }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,7 +37,13 @@ public class FieldSpawner : MonoBehaviour
 
         int rand = Random.Range(0, AreaSpawnerList.Count);
         var TargetArea = AreaSpawnerList[rand];
+        AreaSpawnerList.RemoveAt(rand);
 
         TargetArea.InitArea(t);
+
+        foreach (var a in AreaSpawnerList)
+            Destroy(a.gameObject);
+
+        initState = true;
     }
 }
