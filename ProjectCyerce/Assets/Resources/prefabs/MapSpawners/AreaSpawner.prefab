@@ -94,3 +94,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartAreaPrefab: {fileID: 7800610835071812881, guid: f2e09c25ea4664514a4e74855e2e17fb,
     type: 3}
+  Tree: {fileID: 6449031265137902112, guid: 054c8b9cd40b54b27b048a59e42cc336, type: 3}

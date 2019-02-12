@@ -6,16 +6,24 @@ public class AreaSpawner : MonoBehaviour
 {
 
     public GameObject StartAreaPrefab;
+    public GameObject Tree;
 
     bool initState = false;
     public bool GetInitState { 
         get{return initState;}
         private set{initState = value;}
     }
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        int rand = Random.Range(0, 10);
+        for (int i = 0; i < rand; i++)
+        {
+            int rx = Random.Range(-14, 14);
+            int ry = Random.Range(-14, 14);
+            Instantiate(Tree, new Vector3(rx + transform.position.x, ry + transform.position.y, 0), transform.rotation);
+        }
     }
 
     // Update is called once per frame
