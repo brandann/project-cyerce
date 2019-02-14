@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="16" tileheight="16" infinite="0" nextobjectid="1">
+ <tileset firstgid="1" name="LLTP-Tent" tilewidth="16" tileheight="16" tilecount="4" columns="2">
+  <image source="D:/SourceTree/project-cyerce/project-cyerce/ProjectCyerce/Assets/Resources/Textures/LTTP/LLTP-Tent.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="5" name="GrassColor" tilewidth="16" tileheight="16" tilecount="1" columns="1">
+  <image source="D:/SourceTree/project-cyerce/project-cyerce/ProjectCyerce/Assets/Resources/Textures/LTTP/GrassColor.png" width="16" height="16"/>
+ </tileset>
+ <tileset firstgid="6" name="LTTP-Sheet" tilewidth="16" tileheight="16" tilecount="25" columns="5">
+  <image source="D:/SourceTree/project-cyerce/project-cyerce/ProjectCyerce/Assets/Resources/Textures/LTTP/LTTP-Sheet.png" width="80" height="80"/>
+ </tileset>
+ <tileset firstgid="31" name="LTTP-Eye" tilewidth="36" tileheight="38" tilecount="1" columns="1">
+  <image source="D:/SourceTree/project-cyerce/project-cyerce/ProjectCyerce/Assets/Resources/Textures/LTTP/LTTP-Eye.png" width="36" height="38"/>
+ </tileset>
+ <layer name="Background" width="10" height="10">
+  <data encoding="csv">
+5,5,5,5,5,5,5,5,5,5,
+5,5,5,5,5,5,5,5,5,5,
+5,5,5,5,5,5,5,5,5,5,
+5,5,5,5,5,5,5,5,5,5,
+5,5,5,5,5,5,5,5,5,5,
+5,5,5,5,5,5,5,5,5,5,
+5,5,5,5,5,5,5,5,5,5,
+5,5,5,5,5,5,5,5,5,5,
+5,5,5,5,5,5,5,5,5,5,
+5,5,5,5,5,5,5,5,5,5
+</data>
+ </layer>
+ <layer name="Tile Layer 1" width="10" height="10">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,1,2,0,0,0,
+0,0,0,0,0,3,4,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,8,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,10,0,0,0,0,31,0,10,0,
+0,10,10,0,0,0,0,10,0,0,
+0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+</map>
