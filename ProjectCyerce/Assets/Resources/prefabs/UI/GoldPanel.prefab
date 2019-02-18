@@ -171,7 +171,7 @@ GameObject:
   - component: {fileID: 7353168003134357292}
   - component: {fileID: 7353168003134357297}
   - component: {fileID: 7353168003134357294}
-  - component: {fileID: 7353168003134357295}
+  - component: {fileID: 5902367421545099671}
   m_Layer: 5
   m_Name: GoldPanel
   m_TagString: Untagged
@@ -236,7 +236,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
---- !u!114 &7353168003134357295
+--- !u!114 &5902367421545099671
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -245,14 +245,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7353168003134357293}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7ed1a1705c5d4f659fdc3c772b9b878, type: 3}
+  m_Script: {fileID: 11500000, guid: 4fa8958e28b2f44a9a613362e3feedfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerID: player1
-  HeartContainers:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  GoldUI: {fileID: 7353168003106424936}
 --- !u!1 &7353168003627911433
 GameObject:
   m_ObjectHideFlags: 0

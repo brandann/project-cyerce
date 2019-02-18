@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class GoldUIBehavior : MonoBehaviour
 {
@@ -11,7 +12,8 @@ public class GoldUIBehavior : MonoBehaviour
     protected const string PLAYER1_TAG = "Player/player1";
     protected const string PLAYER2_TAG = "Player/player2";
 
-    public TextMesh GoldUI;
+    public TMPro.TextMeshProUGUI GoldUI;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +24,8 @@ public class GoldUIBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //GoldUI.text = "" + CalcGold();
+        if(null != PlayerStats1)
+            GoldUI.SetText("" + CalcGold());
     }
 
     IEnumerator FindPlayers()
@@ -42,6 +45,6 @@ public class GoldUIBehavior : MonoBehaviour
     {
         if (null != PlayerStats1)
             return PlayerStats1.GetGoldValue();
-        return 0;
+        return -1;
     }
 }
