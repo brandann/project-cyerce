@@ -65,7 +65,7 @@ public class WorldSpawner : MonoBehaviour
 
         this.transform.position = new Vector3(((MapWidth-1) * FieldSize) / 2, ((MapHeight-1) * FieldSize) / 2, 0);
         //this.transform.localScale = new Vector3(WorldWidth, WorldHeight, 0);
-        GetComponent<SpriteRenderer>().size = new Vector2(WorldWidth, WorldHeight) * .1f;
+        GetComponent<SpriteRenderer>().size = new Vector2(WorldWidth, WorldHeight);
 
         CreateBoundries(WorldWidth, WorldHeight);
     }

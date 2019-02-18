@@ -17,13 +17,7 @@ public class AreaSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        int rand = Random.Range(0, 10);
-        for (int i = 0; i < rand; i++)
-        {
-            int rx = Random.Range(-14, 14);
-            int ry = Random.Range(-14, 14);
-            Instantiate(Tree, new Vector3(rx + transform.position.x, ry + transform.position.y, 0), transform.rotation);
-        }
+
     }
 
     // Update is called once per frame
@@ -43,6 +37,7 @@ public class AreaSpawner : MonoBehaviour
         switch(Ftag)
         {
             case FieldSpawner.FieldTags.None:
+                DEV_buildRandomTrees();
                 Destroy(gameObject);
                 break;
             case FieldSpawner.FieldTags.Start:
@@ -66,9 +61,21 @@ public class AreaSpawner : MonoBehaviour
                 this.GetComponent<SpriteRenderer>().color = new Color(.25f, .25f, .25f, 1);
                 break;
             default:
+                DEV_buildRandomTrees();
                 Destroy(this.gameObject);
                 break;
 
+        }
+    }
+
+    private void DEV_buildRandomTrees()
+    {
+        int rand = Random.Range(0, 10);
+        for (int i = 0; i < rand; i++)
+        {
+            int rx = Random.Range(-14, 14);
+            int ry = Random.Range(-14, 14);
+            Instantiate(Tree, new Vector3(rx + transform.position.x, ry + transform.position.y, 0), transform.rotation);
         }
     }
 }

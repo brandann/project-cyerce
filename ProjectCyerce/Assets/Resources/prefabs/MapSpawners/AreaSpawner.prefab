@@ -92,6 +92,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7635bc951e36b4639a1110170c2605a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartAreaPrefab: {fileID: 7800610835071812881, guid: f2e09c25ea4664514a4e74855e2e17fb,
+  StartAreaPrefab: {fileID: 528219359003584732, guid: d19f67fb214b843be8690b12d20f2c16,
     type: 3}
   Tree: {fileID: 6449031265137902112, guid: 054c8b9cd40b54b27b048a59e42cc336, type: 3}
