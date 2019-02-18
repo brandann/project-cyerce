@@ -5,7 +5,7 @@ using UnityEngine;
 public class ProjectileBase : MonoBehaviour
 {
     protected Rigidbody2D _rigidBody2D;
-    protected float Speed = 500;
+    protected float Speed = 1000;
     protected Vector3 velocity;
 
     // Start is called before the first frame update
@@ -26,7 +26,16 @@ public class ProjectileBase : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag.Contains("Wall"))
-            Destroy(this.gameObject);
+        switch(collision.gameObject.tag)
+        {
+            case "Player/player1":
+                break;
+            case "GoldCoin":
+                break;
+            default:
+                Destroy(this.gameObject);
+                break;
+        }
     }
+
 }
