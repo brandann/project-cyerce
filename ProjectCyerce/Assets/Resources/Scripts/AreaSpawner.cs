@@ -37,7 +37,7 @@ public class AreaSpawner : MonoBehaviour
         switch(Ftag)
         {
             case FieldSpawner.FieldTags.None:
-                DEV_buildRandomTrees();
+                //DEV_buildRandomTrees();
                 Destroy(gameObject);
                 break;
             case FieldSpawner.FieldTags.Start:
@@ -60,8 +60,15 @@ public class AreaSpawner : MonoBehaviour
             case FieldSpawner.FieldTags.Dun3:
                 this.GetComponent<SpriteRenderer>().color = new Color(.25f, .25f, .25f, 1);
                 break;
-            default:
+            case FieldSpawner.FieldTags.Forest:
                 DEV_buildRandomTrees();
+                Destroy(gameObject);
+                break;
+            case FieldSpawner.FieldTags.Lake:
+                // nothing
+                break;
+            default:
+                //DEV_buildRandomTrees();
                 Destroy(this.gameObject);
                 break;
 

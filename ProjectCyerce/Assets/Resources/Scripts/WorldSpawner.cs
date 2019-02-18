@@ -40,12 +40,13 @@ public class WorldSpawner : MonoBehaviour
 
     private void InitFieldTags()
     {
-        InitFieldTag(FieldSpawner.FieldTags.Start);
-        InitFieldTag(FieldSpawner.FieldTags.ShopO);
-        InitFieldTag(FieldSpawner.FieldTags.ShopD);
-        InitFieldTag(FieldSpawner.FieldTags.Dun1);
-        InitFieldTag(FieldSpawner.FieldTags.Dun2);
-        InitFieldTag(FieldSpawner.FieldTags.Dun3);
+        InitFieldTag(FieldSpawner.FieldTags.Start); //1
+        InitFieldTag(FieldSpawner.FieldTags.ShopO); //2
+        InitFieldTag(FieldSpawner.FieldTags.Dun1);  //3
+        InitFieldTag(FieldSpawner.FieldTags.Forest); //4
+        //InitFieldTag(FieldSpawner.FieldTags.ShopD);
+        //InitFieldTag(FieldSpawner.FieldTags.Dun2);
+        //InitFieldTag(FieldSpawner.FieldTags.Dun3);
     }
 
     public void InitDynamicWorld()

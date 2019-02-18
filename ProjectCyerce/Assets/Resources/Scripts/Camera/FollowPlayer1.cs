@@ -10,6 +10,8 @@ public class FollowPlayer1 : MonoBehaviour
 
     protected Vector3 targetPosition;
 
+    public float FollowLerp;
+
     // How long the object should shake for.
     public float mShake;
 
@@ -47,7 +49,7 @@ public class FollowPlayer1 : MonoBehaviour
 
     private void LateUpdate()
     {
-        this.transform.position = Vector3.Lerp(this.transform.position, ShakePosition + targetPosition, .1f);
+        this.transform.position = Vector3.Lerp(this.transform.position, ShakePosition + targetPosition, FollowLerp);
     }
 
     private void FollowPlayers()
