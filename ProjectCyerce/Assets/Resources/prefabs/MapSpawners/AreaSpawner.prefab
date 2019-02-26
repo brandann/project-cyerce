@@ -94,4 +94,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartAreaPrefab: {fileID: 528219359003584732, guid: d19f67fb214b843be8690b12d20f2c16,
     type: 3}
+  ShopAreaPrefab: {fileID: 1155510087373424351, guid: df97b2f97f1cf470c976081f16611031,
+    type: 3}
+  DungeonAreaPrefab: {fileID: 1318455771512670234, guid: b896ac698ea594d1f95506e897d8f0bb,
+    type: 3}
+  ForestAreaPrefab: {fileID: 5227981036477784899, guid: 6e86056f1a73a4cadb10c36e4e3dea59,
+    type: 3}
   Tree: {fileID: 6449031265137902112, guid: 054c8b9cd40b54b27b048a59e42cc336, type: 3}

@@ -4,16 +4,40 @@ using UnityEngine;
 
 public class PlayerBehavior : MonoBehaviour
 {
+    // -----------------------------------------
     protected float Speed;
-    protected int CurrentHeath;
-    protected int MaxHeath;
 
+    // -----------------------------------------
+    #region HEALTH
+    protected int CurrentHeath;
+    protected int MaxHeath = 6;
+
+    public int GetMaxHealth() { return MaxHeath; }
+    public int GetCurrentHealth() { return CurrentHeath; }
+    #endregion
+
+    // -----------------------------------------
+    #region GOLD
     protected int GoldValue = 10;
+
+    public int GetGoldValue() { return GoldValue; }
+    #endregion
+
+    // -----------------------------------------
+    #region MANA
+    protected int MaxMana = 100;
+    protected int CurrentMana;
+
+    public int GetMaxMana() { return MaxMana; }
+    public int GetCurrentMana() { return CurrentMana; }
+
+    #endregion
 
     // Start is called before the first frame update
     void Start()
     {
-        MaxHeath = CurrentHeath = 3;
+        CurrentHeath = MaxHeath;
+        CurrentMana = MaxMana;
     }
 
     // Update is called once per frame
@@ -32,13 +56,12 @@ public class PlayerBehavior : MonoBehaviour
 
         var go = GameObject.FindWithTag("MainCamera");
         if (null != go)
-            go.GetComponent<Follow2Players>().Shake(.02f, 1f);
+            go.GetComponent<FollowPlayer1>().Shake(.02f, 1f);
     }
 
-    public int GetGoldValue()
-    {
-        return GoldValue;
-    }
+
+
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

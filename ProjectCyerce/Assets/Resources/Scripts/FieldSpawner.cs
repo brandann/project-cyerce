@@ -76,7 +76,9 @@ public class FieldSpawner : MonoBehaviour
 
         List<AreaSpawner> AreaSpawnerList = new List<AreaSpawner>();
         foreach (var f in AreaSpawners)
+        {
             AreaSpawnerList.Add(f);
+        }
 
         int rand = Random.Range(0, AreaSpawnerList.Count);
         var TargetArea = AreaSpawnerList[rand];
@@ -85,7 +87,7 @@ public class FieldSpawner : MonoBehaviour
         TargetArea.InitArea(t);
 
         foreach (var a in AreaSpawnerList)
-            Destroy(a.gameObject);
+            a.InitArea(FieldTags.None);
 
         initState = true;
     }

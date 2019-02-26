@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBase : MonoBehaviour
+public abstract class EnemyBase : MonoBehaviour
 {
     protected enum State { OFF, PATROL, CHASE}
     protected State CurrentState;
@@ -54,15 +54,30 @@ public class EnemyBase : MonoBehaviour
     protected virtual void Init()
     {
         isAlive = true;
-        CurrentState = State.PATROL;
+        CurrentState = State.OFF;
         TimeofLastBump = Time.timeSinceLevelLoad;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        switch(CurrentState)
+        {
+            case State.OFF:
+                UpdateStateOff();
+                break;
+            case State.PATROL:
+                UpdateStatePatrol();
+                break;
+            case State.CHASE:
+                UpdateStateChase();
+                break;
+        }
     }
+
+    protected abstract void UpdateStateOff();
+    protected abstract void UpdateStatePatrol();
+    protected abstract void UpdateStateChase();
 
     public virtual void TakeDamage(int dmg)
     {
@@ -71,6 +86,8 @@ public class EnemyBase : MonoBehaviour
             EnemyDeath();
         CurrentHeath = Mathf.Clamp(CurrentHeath, 0, MaxHeath);
         print("Enemy Took " + dmg + ", Health at " + CurrentHeath);
+        if (State.OFF == CurrentState)
+            CurrentState = State.CHASE;
     }
 
     protected virtual void EnemyDeath()

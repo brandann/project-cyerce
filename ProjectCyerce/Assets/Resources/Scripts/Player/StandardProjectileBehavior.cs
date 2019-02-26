@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class StandardProjectileBehavior : ProjectileBase
 {
+    private float mRotationSpeed = 50;
 
     private void Start()
     {
@@ -27,7 +28,6 @@ public class StandardProjectileBehavior : ProjectileBase
         if (collision.tag.Contains("Enemy"))
         {
             collision.gameObject.SendMessage("TakeDamage", 1);
-            print("Trigger Damage");
             Destroy(this.gameObject);
         }
     }
@@ -37,9 +37,12 @@ public class StandardProjectileBehavior : ProjectileBase
         Vector3 Position = Vector3.zero;
         if(GetNearestEnemyPosition(out Position))
         {
-            var dist = this.transform.position - Position;
-            var small_norm = dist.normalized * 2;
-            _rigidBody2D.velocity -= new Vector2(small_norm.x, small_norm.y);
+            var LR = NMath.GetLeftRight(this.transform, Position);
+            var dir = (LR == NMath.LeftRight.Left) ? -1 : 1;
+            transform.Rotate(Vector3.forward, dir * -1 * (mRotationSpeed * Time.smoothDeltaTime));
+            //var dist = this.transform.position - Position;
+            //var small_norm = dist.normalized * 2;
+            //_rigidBody2D.velocity -= new Vector2(small_norm.x, small_norm.y);
         }
     }
 

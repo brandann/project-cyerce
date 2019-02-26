@@ -5,20 +5,31 @@ using UnityEngine.UI;
 
 public class PlayerUIManager : MonoBehaviour
 {
-    public string PlayerID;
-    public Image[] HeartContainers;
+    public string PlayerTag;
+
+    public Slider HealthSlider;
+    public Slider ManaSlider;
 
     private PlayerBehavior PlayerStats;
-
-    protected const string PLAYER1_TAG = "Player/player1";
-    protected const string PLAYER2_TAG = "Player/player2";
 
     // Start is called before the first frame update
     void Start()
     {
-        var p_go = GameObject.FindWithTag("Player/" + PlayerID);
+        var p_go = GameObject.FindWithTag(PlayerTag.ToString());
         if (null != p_go)
+        {
             PlayerStats = p_go.GetComponent<PlayerBehavior>();
+
+            // -------------------------------------
+            HealthSlider.maxValue = PlayerStats.GetMaxHealth();
+            HealthSlider.minValue = 0;
+
+            // -------------------------------------
+            ManaSlider.maxValue = PlayerStats.GetMaxMana();
+            ManaSlider.minValue = 0;
+        }
+
+
     }
 
     // Update is called once per frame
@@ -26,5 +37,9 @@ public class PlayerUIManager : MonoBehaviour
     {
         if (null == PlayerStats)
             return;
+
+        HealthSlider.value = PlayerStats.GetCurrentHealth();
+        ManaSlider.value = PlayerStats.GetCurrentMana();
+       
     }
 }

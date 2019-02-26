@@ -17,13 +17,13 @@ public class SnakeHeadBehavior : EnemyBase
 	void Start()
 	{
 		_rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
-		//Global.mGlobal.OnLevelEnd += MGlobal_OnLevelEnd;
-		
-		CurrentSpeed = Speed = 0.5f;
+        //Global.mGlobal.OnLevelEnd += MGlobal_OnLevelEnd;
+        Speed = .1f;
+		CurrentSpeed = Speed;
         PlayerPatrolDist = 8;
 		_spriteRenderer = this.GetComponent<SpriteRenderer>();
 
-        _rigidbody2D.velocity = Random.insideUnitCircle.normalized * Speed;
+        //_rigidbody2D.velocity = Random.insideUnitCircle.normalized * Speed;
 
         if (null != MyTailObject)
             return;
@@ -33,6 +33,8 @@ public class SnakeHeadBehavior : EnemyBase
         MyTailObject.SetParent(this.gameObject);
         SetMaxHealth(3);
         SetDamageOnCollisionWithPlayer(1);
+        CurrentState = State.OFF;
+        base.Init();
     }
 
     private void OnEnable()
@@ -67,24 +69,13 @@ public class SnakeHeadBehavior : EnemyBase
 
     private void FixedUpdate()
 	{
-        ChaseHero();
-        UpdateChase();
-		
+
 		_oldVelocity = _rigidbody2D.velocity;
-	}
-
-	private void UpdateChase()
-	{
-        var isChase = (CurrentState == State.CHASE);
-
-		_spriteRenderer.color = (isChase ? Color.red : Color.white);
-		MyTailObject.SetChase(isChase);
-		CurrentSpeed = (isChase ? CHASE_SPEED : Speed);
 	}
 
     private void LateUpdate()
     {
-        _rigidbody2D.velocity = Speed * _rigidbody2D.velocity.normalized * CurrentSpeed;
+        _rigidbody2D.velocity =  _rigidbody2D.velocity.normalized * CurrentSpeed;
     }
 
     void OnCollisionEnter2D(Collision2D c)
@@ -113,28 +104,53 @@ public class SnakeHeadBehavior : EnemyBase
        //_rigidbody2D.velocity = Vector2.Reflect(_oldVelocity, go.GetComponent<PaceEnemy>().GetCurrentDirection());
     }
 
-    private void ChaseHero()
+    protected override void EnemyDeath()
     {
-        //TODO add player 2 tracking
+        Destroy(MyTailObject.gameObject);
+        base.EnemyDeath();
+    }
 
-        // GOT THE HERO OBJECT!
+    protected override void UpdateStateOff()
+    {
         var dist = this.transform.position - GetNearestPlayerPosition(); // DIST BETWEEN PLAYER AND PLANET
+        if (dist.magnitude <= PlayerPatrolDist)
+        {
+            CurrentState = State.CHASE;
+            return;
+        }
 
+        _spriteRenderer.color = Color.black;
+        CurrentSpeed = 0;
+    }
+
+    protected override void UpdateStatePatrol()
+    {
+        var dist = this.transform.position - GetNearestPlayerPosition(); // DIST BETWEEN PLAYER AND PLANET
+        if (dist.magnitude <= PlayerPatrolDist)
+        {
+            CurrentState = State.CHASE;
+            return;
+        }
+
+        _spriteRenderer.color = Color.white;
+        MyTailObject.SetChase(false);
+        CurrentSpeed = Speed;
+    }
+
+    protected override void UpdateStateChase()
+    {
+        var dist = this.transform.position - GetNearestPlayerPosition(); // DIST BETWEEN PLAYER AND PLANET
         if (dist.magnitude > PlayerPatrolDist)
         {
             CurrentState = State.PATROL;
             return;
         }
 
-
         var small_norm = dist.normalized * CHASE_SPEED; //VELOCITY_SPEED_TO_PLAYER; // 1/10TH OF THE NORMAILZED DISTANCE BETWEEN PLAYER AND PLANET
         _rigidbody2D.velocity -= new Vector2(small_norm.x, small_norm.y);
-        CurrentState = State.CHASE;
-    }
 
-    protected override void EnemyDeath()
-    {
-        Destroy(MyTailObject.gameObject);
-        base.EnemyDeath();
+        _spriteRenderer.color = Color.red;
+        MyTailObject.SetChase(true);
+        CurrentSpeed = CHASE_SPEED;
     }
 }

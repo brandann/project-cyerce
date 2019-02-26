@@ -51,6 +51,7 @@ public class WorldSpawner : MonoBehaviour
 
     public void InitDynamicWorld()
     {
+        this.transform.position = new Vector3(((MapWidth - 1) * FieldSize) / 2, ((MapHeight - 1) * FieldSize) / 2, 0);
         FieldSpawnerList = new List<FieldSpawner>();
         int WorldWidth = MapWidth * FieldSize;
         int WorldHeight = MapHeight * FieldSize;
@@ -60,13 +61,14 @@ public class WorldSpawner : MonoBehaviour
             for (int y = 0; y < MapHeight; y++)
             {
                 var g = Instantiate(FieldPrefab, new Vector3(x * FieldSize, y * FieldSize, 0), transform.rotation);
-                FieldSpawnerList.Add(g.GetComponent<FieldSpawner>());
+                var mField = g.GetComponent<FieldSpawner>();
+                mField.transform.parent = this.transform;
+                FieldSpawnerList.Add(mField);
             }
         }
 
-        this.transform.position = new Vector3(((MapWidth-1) * FieldSize) / 2, ((MapHeight-1) * FieldSize) / 2, 0);
         //this.transform.localScale = new Vector3(WorldWidth, WorldHeight, 0);
-        GetComponent<SpriteRenderer>().size = new Vector2(WorldWidth, WorldHeight);
+        //GetComponent<SpriteRenderer>().size = new Vector2(WorldWidth, WorldHeight);
 
         CreateBoundries(WorldWidth, WorldHeight);
     }
@@ -92,6 +94,7 @@ public class WorldSpawner : MonoBehaviour
     {
         var w = Instantiate(WorldBoundryPrefab, new Vector3(x, y, 0), transform.rotation);
         w.transform.localScale = new Vector3(width, height, 0);
+        w.transform.parent = this.transform;
     }
 
     private void InitFieldTag(FieldSpawner.FieldTags t)

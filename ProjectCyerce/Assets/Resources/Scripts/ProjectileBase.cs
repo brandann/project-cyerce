@@ -29,9 +29,9 @@ public class ProjectileBase : MonoBehaviour
         switch(collision.gameObject.tag)
         {
             case "Player/player1":
-                break;
+                break; // DO NOTHING
             case "GoldCoin":
-                break;
+                break; // DO NOTHING
             default:
                 Destroy(this.gameObject);
                 break;

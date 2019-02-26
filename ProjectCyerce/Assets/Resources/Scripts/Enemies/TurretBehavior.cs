@@ -85,4 +85,19 @@ public class TurretBehavior : EnemyBase
         var SPP = Instantiate(ProjectilePrefab, this.transform.position + this.transform.up, this.transform.rotation);
         TimeofLastShot = Time.timeSinceLevelLoad;
     }
+
+    protected override void UpdateStateOff()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    protected override void UpdateStatePatrol()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    protected override void UpdateStateChase()
+    {
+        throw new System.NotImplementedException();
+    }
 }

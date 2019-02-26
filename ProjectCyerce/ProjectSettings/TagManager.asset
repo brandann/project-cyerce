@@ -17,6 +17,7 @@ TagManager:
   - Projectile/Simple-Enemy
   - Map/StartArea
   - Map/StartNode
+  - Map/ShopOStartNode
   layers:
   - Default
   - TransparentFX

@@ -6,6 +6,9 @@ public class AreaSpawner : MonoBehaviour
 {
 
     public GameObject StartAreaPrefab;
+    public GameObject ShopAreaPrefab;
+    public GameObject DungeonAreaPrefab;
+    public GameObject ForestAreaPrefab;
     public GameObject Tree;
 
     bool initState = false;
@@ -38,21 +41,23 @@ public class AreaSpawner : MonoBehaviour
         {
             case FieldSpawner.FieldTags.None:
                 //DEV_buildRandomTrees();
-                Destroy(gameObject);
+                //Destroy(gameObject);
                 break;
             case FieldSpawner.FieldTags.Start:
-                this.GetComponent<SpriteRenderer>().color = Color.green;
                 print("Start POS = " + this.transform.position);
-                Instantiate(StartAreaPrefab, transform.position, transform.rotation);
+                var _startArea = Instantiate(StartAreaPrefab, transform.position, transform.rotation);
+                _startArea.transform.parent = this.transform;
                 break;
             case FieldSpawner.FieldTags.ShopO:
-                this.GetComponent<SpriteRenderer>().color = Color.blue;
+                var _shopArea = Instantiate(ShopAreaPrefab, transform.position, transform.rotation);
+                _shopArea.transform.parent = this.transform;
                 break;
             case FieldSpawner.FieldTags.ShopD:
                 this.GetComponent<SpriteRenderer>().color = Color.magenta;
                 break;
             case FieldSpawner.FieldTags.Dun1:
-                this.GetComponent<SpriteRenderer>().color = Color.grey;
+                var _dungeonArea = Instantiate(DungeonAreaPrefab, transform.position, transform.rotation);
+                _dungeonArea.transform.parent = this.transform;
                 break;
             case FieldSpawner.FieldTags.Dun2:
                 this.GetComponent<SpriteRenderer>().color = Color.black;
@@ -61,17 +66,16 @@ public class AreaSpawner : MonoBehaviour
                 this.GetComponent<SpriteRenderer>().color = new Color(.25f, .25f, .25f, 1);
                 break;
             case FieldSpawner.FieldTags.Forest:
-                DEV_buildRandomTrees();
-                Destroy(gameObject);
+                var _forestArea = Instantiate(ForestAreaPrefab, transform.position, transform.rotation);
+                _forestArea.transform.parent = this.transform;
                 break;
             case FieldSpawner.FieldTags.Lake:
                 // nothing
                 break;
             default:
                 //DEV_buildRandomTrees();
-                Destroy(this.gameObject);
+                //Destroy(this.gameObject);
                 break;
-
         }
     }
 
@@ -82,7 +86,8 @@ public class AreaSpawner : MonoBehaviour
         {
             int rx = Random.Range(-14, 14);
             int ry = Random.Range(-14, 14);
-            Instantiate(Tree, new Vector3(rx + transform.position.x, ry + transform.position.y, 0), transform.rotation);
+            var t = Instantiate(Tree, new Vector3(rx + transform.position.x, ry + transform.position.y, 0), transform.rotation);
+            t.transform.parent = this.transform;
         }
     }
 }
