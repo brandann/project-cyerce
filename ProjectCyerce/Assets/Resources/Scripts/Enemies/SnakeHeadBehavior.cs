@@ -14,13 +14,18 @@ public class SnakeHeadBehavior : EnemyBase
     private TailBehavior MyTailObject;
     private SpriteRenderer _spriteRenderer;
 
+    private int MAX_HEALTH = 3;
+    private int DMG_TO_PLAYER_ON_COLLISION = 1;
+
+    private int MY_PATROL_DISTANCE = 8;
+
 	void Start()
 	{
 		_rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
         //Global.mGlobal.OnLevelEnd += MGlobal_OnLevelEnd;
         Speed = .1f;
 		CurrentSpeed = Speed;
-        PlayerPatrolDist = 8;
+        PlayerPatrolDist = MY_PATROL_DISTANCE;
 		_spriteRenderer = this.GetComponent<SpriteRenderer>();
 
         //_rigidbody2D.velocity = Random.insideUnitCircle.normalized * Speed;
@@ -31,8 +36,8 @@ public class SnakeHeadBehavior : EnemyBase
         go.transform.position = this.transform.position;
         MyTailObject = go.GetComponent<TailBehavior>();
         MyTailObject.SetParent(this.gameObject);
-        SetMaxHealth(3);
-        SetDamageOnCollisionWithPlayer(1);
+        SetMaxHealth(MAX_HEALTH);
+        SetDamageOnCollisionWithPlayer(DMG_TO_PLAYER_ON_COLLISION);
         CurrentState = State.OFF;
         base.Init();
     }

@@ -11,14 +11,15 @@ public class PlayerShooterBehavior : MonoBehaviour
     public Transform PlayerAimTransform; // use for the rotation of the player
     public GameObject ProjectilePrefab;
 
+    #region MANA
     public float MAX_Mana;
-    public float Mana_RegenRate;
     protected float CURRENT_Mana;
 
     public Slider Mana_UI;
 
-    protected float GainManaSeconds = 1; // how ofter gain mana
-    protected float GainManaAmmount = 5; // how much mana to gain
+    protected float GainManaSeconds = 1; // HOW OFTEN SHOULD THE PLAYER GAIN MANA
+    protected float GainManaAmmount = 5; // HOW MUCH MANA THE PLAYER SHOULD GAIN ON INTERVAL
+    #endregion
 
     private Vector3 GetPlayerPosition()
     {

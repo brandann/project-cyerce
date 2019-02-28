@@ -4,24 +4,24 @@ using UnityEngine;
 
 public abstract class EnemyBase : MonoBehaviour
 {
-    protected enum State { OFF, PATROL, CHASE}
-    protected State CurrentState;
-    protected float Speed;
-    protected int CurrentHeath;
-    protected int MaxHeath;
-    protected bool isAlive;
-    protected float PlayerPatrolDist;
-    protected int DamageToPlayerOnCollision;
+    protected enum State { OFF, PATROL, CHASE} // STATE OF THE ENEMY
+    protected State CurrentState; // CURRENT STATE OF THE ENEMY
+    protected float Speed; // ENEMY SPEED
+    protected int CurrentHeath; // ENEMY CURRENT HEALTH
+    protected int MaxHeath; // ENEMY MAX HEALTH - USED FOR GAINING HEALTH (NOT TO GO OVER)
+    protected bool isAlive; // TRUE: ENEMY IS ALIVE
+    protected float PlayerPatrolDist; // TODO THIS NEEDS BETTER DEFINED
+    protected int DamageToPlayerOnCollision; // DAMAGE DELT TO PLAYER WHEN ENEMY BUMBS HIM
 
     private Transform player1Transform;
     private Transform player2Transform;
     protected const string PLAYER1_TAG = "Player/player1";
     protected const string PLAYER2_TAG = "Player/player2";
 
-    private float TimeofLastBump;
-    private float TimeBetweenBumps = 1.0f;
+    private float TimeofLastBump; // TRACK WHEN LAST BUMP HAPPENED
+    private float TimeBetweenBumps = 1.0f; // HELPS FROM MANY CONTINUOUS BUMPS
 
-    public GameObject GoldCoinPrefab;
+    public GameObject GoldCoinPrefab; // GOLD COIN TO DROP WHEN ENEMY DIES
 
     protected Transform Player1Transform
     {
