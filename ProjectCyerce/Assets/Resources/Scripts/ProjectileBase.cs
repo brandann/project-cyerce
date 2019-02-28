@@ -8,15 +8,18 @@ public class ProjectileBase : MonoBehaviour
     protected float Speed = 1000;
     protected Vector3 velocity;
 
+    protected float ManaCost;
+
     // Start is called before the first frame update
     void Start()
     {
 
     }
 
-    protected void Init()
+    public virtual ProjectileBase Init()
     {
         _rigidBody2D = this.GetComponent<Rigidbody2D>();
+        return this;
     }
 
     private void LateUpdate()
@@ -36,6 +39,16 @@ public class ProjectileBase : MonoBehaviour
                 Destroy(this.gameObject);
                 break;
         }
+    }
+
+    public float GetManaCost()
+    {
+        return ManaCost;
+    }
+
+    public void SetManaCost(float m)
+    {
+        ManaCost = m;
     }
 
 }

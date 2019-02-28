@@ -8,7 +8,14 @@ public class StandardProjectileBehavior : ProjectileBase
 
     private void Start()
     {
+        //Init();
+    }
+
+    public override ProjectileBase Init()
+    {
         base.Init();
+        SetManaCost(3);
+        return this;
     }
 
     // Update is called once per frame
