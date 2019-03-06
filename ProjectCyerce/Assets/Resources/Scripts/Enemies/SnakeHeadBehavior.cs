@@ -117,7 +117,9 @@ public class SnakeHeadBehavior : EnemyBase
 
     protected override void UpdateStateOff()
     {
-        var dist = this.transform.position - GetNearestPlayerPosition(); // DIST BETWEEN PLAYER AND PLANET
+        Vector3 PlayerPos = new Vector3();
+        GetNearestPlayerPosition(out PlayerPos);
+        var dist = this.transform.position - PlayerPos;// DIST BETWEEN PLAYER AND ENEMY
         if (dist.magnitude <= PlayerPatrolDist)
         {
             CurrentState = State.CHASE;
@@ -130,7 +132,9 @@ public class SnakeHeadBehavior : EnemyBase
 
     protected override void UpdateStatePatrol()
     {
-        var dist = this.transform.position - GetNearestPlayerPosition(); // DIST BETWEEN PLAYER AND PLANET
+        Vector3 PlayerPos = new Vector3();
+        GetNearestPlayerPosition(out PlayerPos);
+        var dist = this.transform.position - PlayerPos;// DIST BETWEEN PLAYER AND ENEMY
         if (dist.magnitude <= PlayerPatrolDist)
         {
             CurrentState = State.CHASE;
@@ -144,7 +148,9 @@ public class SnakeHeadBehavior : EnemyBase
 
     protected override void UpdateStateChase()
     {
-        var dist = this.transform.position - GetNearestPlayerPosition(); // DIST BETWEEN PLAYER AND PLANET
+        Vector3 PlayerPos = new Vector3();
+        GetNearestPlayerPosition(out PlayerPos);
+        var dist = this.transform.position - PlayerPos;// DIST BETWEEN PLAYER AND ENEMY
         if (dist.magnitude > PlayerPatrolDist)
         {
             CurrentState = State.PATROL;

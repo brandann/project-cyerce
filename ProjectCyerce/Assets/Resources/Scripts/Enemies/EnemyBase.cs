@@ -109,22 +109,34 @@ public abstract class EnemyBase : MonoBehaviour
         this.transform.up = diff.normalized;
     }
 
-    protected Vector3 GetNearestPlayerPosition()
+    protected bool GetNearestPlayerPosition(out Vector3 pos)
     {
         if (null != Player1Transform && null != Player2Transform)
         {
             var dist1 = Player1Transform.position - this.transform.position;
             var dist2 = Player2Transform.position - this.transform.position;
             if (dist1.magnitude < dist2.magnitude)
-                return (Player1Transform.position);
-            return(Player2Transform.position);
+            {
+                pos = (Player1Transform.position);
+                return true;
+            }
+            pos = (Player2Transform.position);
+            return true;
         }
-        if (null != Player1Transform && null == Player2Transform)
-            return (Player1Transform.position);
-        if (null == Player1Transform && null != Player2Transform)
-            return(Player2Transform.position);
+        if (null != Player1Transform && null == Player2Transform) {
+            pos = (Player1Transform.position);
+            return true;
+        }
 
-        return new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
+        if (null == Player1Transform && null != Player2Transform)
+        {
+            pos = (Player2Transform.position);
+            return true;
+        }
+
+
+        pos = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
+        return false;
     }
 
     protected void SetDamageOnCollisionWithPlayer(int dmg)

@@ -64,7 +64,8 @@ public class TurretBehavior : EnemyBase
         if (CurrentState == State.CHASE)
         {
             //SetLookAt(Player1Position);
-            var pos = GetNearestPlayerPosition();
+            var pos = new Vector3(); 
+            GetNearestPlayerPosition(out pos);
             SetLookAt(pos);
             sprite.color = Color.red;
         }

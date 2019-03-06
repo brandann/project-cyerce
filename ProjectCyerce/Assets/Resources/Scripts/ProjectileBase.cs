@@ -126,14 +126,6 @@ public abstract class ProjectileBase : MonoBehaviour
         return false;
     }
 
-    protected override void OnTriggerEnter2D(Collider2D collision)
-    {
-        base.OnTriggerEnter2D(collision);
-        if (collision.tag.Contains("Enemy"))
-        {
-            collision.gameObject.SendMessage("TakeDamage", 1);
-            Destroy(this.gameObject);
-        }
-    }
+
 
 }
