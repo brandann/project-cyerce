@@ -7,9 +7,12 @@ public abstract class EnemyBase : MonoBehaviour
     // ENEMY STATE ------------------------------------------
     protected enum State { OFF, PATROL, CHASE} // STATE OF THE ENEMY
     protected State CurrentState; // CURRENT STATE OF THE ENEMY
+    protected string MyTag;
 
     // ENEMY SPEED -------------------------------------------
-    protected float Speed; // ENEMY SPEED
+    //protected float Speed; // ENEMY SPEED
+    protected float PatrolSpeed;
+    protected float ChaseSpeed;
 
     // ENEMY HEALTH -------------------------------------------
     protected int CurrentHeath; // ENEMY CURRENT HEALTH
@@ -17,7 +20,6 @@ public abstract class EnemyBase : MonoBehaviour
     protected bool isAlive; // TRUE: ENEMY IS ALIVE
 
     // PLAYER INFO -------------------------------------------
-    protected float PlayerPatrolDist; // TODO THIS NEEDS BETTER DEFINED
     protected int DamageToPlayerOnCollision; // DAMAGE DELT TO PLAYER WHEN ENEMY BUMBS HIM
     private Transform player1Transform;
     private Transform player2Transform;
@@ -111,19 +113,20 @@ public abstract class EnemyBase : MonoBehaviour
     {
         DropLoot();
         isAlive = false;
-        print("Enemy Death");
+        print(this.gameObject.tag + " Death");
         Destroy(this.gameObject);
     }
     #endregion
 
     // INIT BASE -------------------------------------------
     #region init
-    protected void InitBase(int maxHealth, float speed, int dmg)
+    protected void InitBase(int maxHealth, float patrolSpeed, float chaseSpeed, int dmg)
     {
         // maxHeath *** sets the max HP and current HP for the enemy
         // speed *** sets the speed of the player
         MaxHeath = CurrentHeath = maxHealth;
-        Speed = speed;
+        PatrolSpeed = patrolSpeed;
+        ChaseSpeed = chaseSpeed;
         DamageToPlayerOnCollision = dmg;
 
         isAlive = true;
@@ -180,6 +183,19 @@ public abstract class EnemyBase : MonoBehaviour
 
         col.SendMessage("TakeDamage", DamageToPlayerOnCollision);
         TimeofLastBump = Time.timeSinceLevelLoad;
+    }
+
+    protected float CurrentSpeed()
+    {
+        switch (CurrentState)
+        {
+            case State.PATROL:
+                return PatrolSpeed;
+            case State.CHASE:
+                return ChaseSpeed;
+            default:
+                return 0;
+        }
     }
     #endregion
 

@@ -9,13 +9,14 @@ public class TurretBehavior : EnemyBase
 
     private float TimeofLastShot;
     private float TimeBetweenShots = 3.0f;
+    private float PlayerPatrolDist;
 
     // Start is called before the first frame update
     void Start()
     {
         base.Init();
 
-        InitBase(5, 0, 0);
+        InitBase(5, 0, 0, 0);
 
         sprite = this.GetComponent<SpriteRenderer>();
         PlayerPatrolDist = 12;

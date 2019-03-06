@@ -6,6 +6,7 @@ public class ArcherBehavior : EnemyBase
 {
     protected Vector3 TargetPlayerPosition;
     protected Vector3 TargetPosition;
+    private float PlayerPatrolDist;
 
 
     protected override void UpdateStateChase()

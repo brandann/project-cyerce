@@ -6,8 +6,6 @@ public class SnakeHeadBehavior : EnemyBase
     // MOVEMENT
 	private Rigidbody2D _rigidbody2D;
 	private Vector2 _oldVelocity;
-    private const float CHASE_SPEED = 2f;
-    private float CurrentSpeed;
 
     // BODY
     public GameObject TailPrefab;
@@ -19,16 +17,17 @@ public class SnakeHeadBehavior : EnemyBase
 
     private int MY_PATROL_DISTANCE = 8;
 
-	void Start()
+    private float PlayerPatrolDist;
+
+    void Start()
 	{
 		_rigidbody2D = this.GetComponent<Rigidbody2D>();
         _spriteRenderer = this.GetComponent<SpriteRenderer>();
 
-        InitBase(MAX_HEALTH, 0.1f, DMG_TO_PLAYER_ON_COLLISION);
+        InitBase(MAX_HEALTH, 0.1f, 2f, DMG_TO_PLAYER_ON_COLLISION);
 
 
         //Global.mGlobal.OnLevelEnd += MGlobal_OnLevelEnd;
-        CurrentSpeed = Speed;
         PlayerPatrolDist = MY_PATROL_DISTANCE;
 		
 
@@ -83,7 +82,7 @@ public class SnakeHeadBehavior : EnemyBase
 
     private void LateUpdate()
     {
-        _rigidbody2D.velocity =  _rigidbody2D.velocity.normalized * CurrentSpeed;
+        _rigidbody2D.velocity =  _rigidbody2D.velocity.normalized * CurrentSpeed();
     }
 
     void OnCollisionEnter2D(Collision2D c)
@@ -130,7 +129,6 @@ public class SnakeHeadBehavior : EnemyBase
         }
 
         _spriteRenderer.color = Color.black;
-        CurrentSpeed = 0;
     }
 
     protected override void UpdateStatePatrol()
@@ -146,7 +144,6 @@ public class SnakeHeadBehavior : EnemyBase
 
         _spriteRenderer.color = Color.white;
         MyTailObject.SetChase(false);
-        CurrentSpeed = Speed;
     }
 
     protected override void UpdateStateChase()
@@ -160,11 +157,10 @@ public class SnakeHeadBehavior : EnemyBase
             return;
         }
 
-        var small_norm = dist.normalized * CHASE_SPEED; //VELOCITY_SPEED_TO_PLAYER; // 1/10TH OF THE NORMAILZED DISTANCE BETWEEN PLAYER AND PLANET
+        var small_norm = dist.normalized * ChaseSpeed; //VELOCITY_SPEED_TO_PLAYER; // 1/10TH OF THE NORMAILZED DISTANCE BETWEEN PLAYER AND PLANET
         _rigidbody2D.velocity -= new Vector2(small_norm.x, small_norm.y);
 
         _spriteRenderer.color = Color.red;
         MyTailObject.SetChase(true);
-        CurrentSpeed = CHASE_SPEED;
     }
 }
