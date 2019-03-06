@@ -18,6 +18,8 @@ TagManager:
   - Map/StartArea
   - Map/StartNode
   - Map/ShopOStartNode
+  - UI/ManaSlider
+  - Enemy/Archer
   layers:
   - Default
   - TransparentFX

@@ -15,10 +15,10 @@ public class TurretBehavior : EnemyBase
     {
         base.Init();
 
+        InitBase(5, 0, 0);
+
         sprite = this.GetComponent<SpriteRenderer>();
         PlayerPatrolDist = 12;
-        SetMaxHealth(5);
-        Speed = 0;
         TimeofLastShot = Time.timeSinceLevelLoad;
     }
 

@@ -4,28 +4,30 @@ using UnityEngine;
 
 public abstract class EnemyBase : MonoBehaviour
 {
+    // ENEMY STATE ------------------------------------------
     protected enum State { OFF, PATROL, CHASE} // STATE OF THE ENEMY
     protected State CurrentState; // CURRENT STATE OF THE ENEMY
+
+    // ENEMY SPEED -------------------------------------------
     protected float Speed; // ENEMY SPEED
+
+    // ENEMY HEALTH -------------------------------------------
     protected int CurrentHeath; // ENEMY CURRENT HEALTH
     protected int MaxHeath; // ENEMY MAX HEALTH - USED FOR GAINING HEALTH (NOT TO GO OVER)
     protected bool isAlive; // TRUE: ENEMY IS ALIVE
+
+    // PLAYER INFO -------------------------------------------
     protected float PlayerPatrolDist; // TODO THIS NEEDS BETTER DEFINED
     protected int DamageToPlayerOnCollision; // DAMAGE DELT TO PLAYER WHEN ENEMY BUMBS HIM
-
     private Transform player1Transform;
     private Transform player2Transform;
     protected const string PLAYER1_TAG = "Player/player1";
     protected const string PLAYER2_TAG = "Player/player2";
 
-    private float TimeofLastBump; // TRACK WHEN LAST BUMP HAPPENED
-    private float TimeBetweenBumps = 1.0f; // HELPS FROM MANY CONTINUOUS BUMPS
-
-    public GameObject GoldCoinPrefab; // GOLD COIN TO DROP WHEN ENEMY DIES
-
     protected Transform Player1Transform
     {
-        get {
+        get
+        {
             if (null == player1Transform)
             {
                 var go = GameObject.FindWithTag(PLAYER1_TAG);
@@ -35,7 +37,6 @@ public abstract class EnemyBase : MonoBehaviour
             return player1Transform;
         }
     }
-
     protected Transform Player2Transform
     {
         get
@@ -50,12 +51,29 @@ public abstract class EnemyBase : MonoBehaviour
         }
     }
 
+    // BUMP HANDLE -------------------------------------------
+    private float TimeofLastBump; // TRACK WHEN LAST BUMP HAPPENED
+    private float TimeBetweenBumps = 1.0f; // HELPS FROM MANY CONTINUOUS BUMPS
+
+    // DROPS -------------------------------------------
+    public GameObject GoldCoinPrefab; // GOLD COIN TO DROP WHEN ENEMY DIES
+    //pulbic GameObject HeartPrefab;
+
+    // ABSTRACT -------------------------------------------
+    protected abstract void UpdateStateOff();
+    protected abstract void UpdateStatePatrol();
+    protected abstract void UpdateStateChase();
+
+    // DROP -------------------------------------------
+    private readonly int[] Drop_Health_Range = { 0, 5 };
+    private readonly int[] Drop_Gold_Range = { 6, 75 };
+    private readonly int[] GoldDrop = { 10, 9, 9, 8, 8, 8, 7, 7, 7, 7, 5, 5, 5, 5, 5, 4, 4, 4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
+
+    #region unity
     // Start is called before the first frame update
     protected virtual void Init()
     {
-        isAlive = true;
-        CurrentState = State.OFF;
-        TimeofLastBump = Time.timeSinceLevelLoad;
+
     }
 
     // Update is called once per frame
@@ -74,11 +92,10 @@ public abstract class EnemyBase : MonoBehaviour
                 break;
         }
     }
+    #endregion
 
-    protected abstract void UpdateStateOff();
-    protected abstract void UpdateStatePatrol();
-    protected abstract void UpdateStateChase();
-
+    // DAMAGE -------------------------------------------
+    #region damage
     public virtual void TakeDamage(int dmg)
     {
         CurrentHeath -= dmg;
@@ -97,12 +114,26 @@ public abstract class EnemyBase : MonoBehaviour
         print("Enemy Death");
         Destroy(this.gameObject);
     }
+    #endregion
 
-    protected void SetMaxHealth(int i)
+    // INIT BASE -------------------------------------------
+    #region init
+    protected void InitBase(int maxHealth, float speed, int dmg)
     {
-        MaxHeath = CurrentHeath = i;
-    }
+        // maxHeath *** sets the max HP and current HP for the enemy
+        // speed *** sets the speed of the player
+        MaxHeath = CurrentHeath = maxHealth;
+        Speed = speed;
+        DamageToPlayerOnCollision = dmg;
 
+        isAlive = true;
+        CurrentState = State.OFF;
+        TimeofLastBump = Time.timeSinceLevelLoad;
+    }
+    #endregion
+
+    // INTERACT WITH PLAYER -------------------------------------------
+    #region player interaction
     protected void SetLookAt(Vector3 pos)
     {
         var diff = pos - this.transform.position;
@@ -139,11 +170,6 @@ public abstract class EnemyBase : MonoBehaviour
         return false;
     }
 
-    protected void SetDamageOnCollisionWithPlayer(int dmg)
-    {
-        DamageToPlayerOnCollision = dmg;
-    }
-
     protected void BumpPlayer(GameObject col)
     {
         if ((Time.timeSinceLevelLoad - TimeofLastBump) < TimeBetweenBumps)
@@ -155,10 +181,10 @@ public abstract class EnemyBase : MonoBehaviour
         col.SendMessage("TakeDamage", DamageToPlayerOnCollision);
         TimeofLastBump = Time.timeSinceLevelLoad;
     }
+    #endregion
 
-    private readonly int[] Drop_Health_Range = { 0, 5 };
-    private readonly int[] Drop_Gold_Range = { 6, 75 };
-
+    // DROP -------------------------------------------
+    #region end
     protected void DropLoot()
     {
         var r = Random.Range(0, 100);
@@ -173,8 +199,6 @@ public abstract class EnemyBase : MonoBehaviour
         print("Drop Health");
     }
 
-    private readonly int[] GoldDrop = { 10, 9, 9, 8, 8, 8, 7, 7, 7, 7, 5, 5, 5, 5, 5, 4, 4, 4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
-
     protected void DropGold()
     {
         var r = Random.Range(0, GoldDrop.Length);
@@ -188,4 +212,5 @@ public abstract class EnemyBase : MonoBehaviour
         // CREATE GOLD FOR GOLDDROP[R];
         print("Drop Gold: " + dropVal);
     }
+    #endregion 
 }
