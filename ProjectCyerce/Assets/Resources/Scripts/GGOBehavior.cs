@@ -14,6 +14,8 @@ public class GGOBehavior : MonoBehaviour
         WorldMap = GameObject.Find("OverworldSpawner");
         ShopMap = GameObject.Find("ShopScreen");
         Camera = GameObject.Find("Main Camera");
+
+        ShopMap.SetActive(false);
     }
 
     // Update is called once per frame
