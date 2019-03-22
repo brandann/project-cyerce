@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShopMapDoorBehavior : MonoBehaviour
+public class OpenShopTest : MonoBehaviour
 {
-    public FieldSpawner.FieldTags ShopID;
+
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -20,10 +21,23 @@ public class ShopMapDoorBehavior : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag.Contains("Player"))
-        {
-            var ggo = GameObject.Find("GlobalGameObject").GetComponent<GGOBehavior>();
-            ggo.TravelToShop1();
-        }
+        OnButtonClick();
+    }
+
+    public void OnButtonClick()
+    {
+
+
+        MovePlayerToShop();
+    }
+
+    private void MovePlayerToShop()
+    {
+
+    }
+
+    public void BackToWorld()
+    {
+
     }
 }
