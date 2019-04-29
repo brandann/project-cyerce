@@ -121,7 +121,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4188911845339828, guid: e9ea79e37d50046b98ffc7d488ebf893, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.7
+      value: -14.4
       objectReference: {fileID: 0}
     - target: {fileID: 4188911845339828, guid: e9ea79e37d50046b98ffc7d488ebf893, type: 3}
       propertyPath: m_LocalPosition.y
@@ -603,9 +603,8 @@ MonoBehaviour:
   player1Transform: {fileID: 0}
   FollowLerp: 0.08
   spriteBounds: {fileID: 1202466573}
-  mShake: 0
-  mShakeAmount: 0
-  mDecreaseFactor: 0.1
+  ShakeSeconds: 0
+  ShakeMagnitude: 0
 --- !u!81 &462649738
 AudioListener:
   m_ObjectHideFlags: 0
@@ -2144,7 +2143,7 @@ PrefabInstance:
     - target: {fileID: 6347901989674358240, guid: b65bb8b53129a4c20830eeecb8e00bad,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 17
+      value: 11.7
       objectReference: {fileID: 0}
     - target: {fileID: 6347901989674358240, guid: b65bb8b53129a4c20830eeecb8e00bad,
         type: 3}
@@ -2526,7 +2525,7 @@ PrefabInstance:
     - target: {fileID: 6347901989674358240, guid: b65bb8b53129a4c20830eeecb8e00bad,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 17
+      value: 7.3
       objectReference: {fileID: 0}
     - target: {fileID: 6347901989674358240, guid: b65bb8b53129a4c20830eeecb8e00bad,
         type: 3}

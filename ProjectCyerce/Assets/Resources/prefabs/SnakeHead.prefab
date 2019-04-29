@@ -115,6 +115,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1d364a11151f4c42bff9ebc44db7f11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BurstPrefab: {fileID: 3981038332317197758, guid: 8005be293d4fcbf4f8ae1f1869072189,
+    type: 3}
   GoldCoinPrefab: {fileID: 8164763244927475989, guid: 1300491639dab481eafaeac1420d23e1,
     type: 3}
   TailPrefab: {fileID: 1117217343093766, guid: f0c51d820b5db468fa4051431b58dc37, type: 3}

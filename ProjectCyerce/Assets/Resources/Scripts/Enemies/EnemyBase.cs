@@ -26,6 +26,8 @@ public abstract class EnemyBase : MonoBehaviour
     protected const string PLAYER1_TAG = "Player/player1";
     protected const string PLAYER2_TAG = "Player/player2";
 
+	public GameObject BurstPrefab;
+
     protected Transform Player1Transform
     {
         get
@@ -101,10 +103,16 @@ public abstract class EnemyBase : MonoBehaviour
     public virtual void TakeDamage(int dmg)
     {
         CurrentHeath -= dmg;
-        if (CurrentHeath <= 0)
+		CurrentHeath = Mathf.Clamp(CurrentHeath, 0, MaxHeath);
+		print("Enemy Took " + dmg + ", Health at " + CurrentHeath);
+
+		//Burst
+		var BurstObj = Instantiate(BurstPrefab);
+		BurstObj.transform.position = this.transform.position;
+
+		if (CurrentHeath <= 0)
             EnemyDeath();
-        CurrentHeath = Mathf.Clamp(CurrentHeath, 0, MaxHeath);
-        print("Enemy Took " + dmg + ", Health at " + CurrentHeath);
+
         if (State.OFF == CurrentState)
             CurrentState = State.CHASE;
     }
