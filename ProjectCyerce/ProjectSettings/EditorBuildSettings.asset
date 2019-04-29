@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TestingScene.unity
     guid: 96a74e461db4c48dc8d98c249dd495bd
+  - enabled: 1
+    path: Assets/Scenes/FightingSim.unity
+    guid: b99523011852f6840a7f058c6adcc8a9
   m_configObjects: {}
