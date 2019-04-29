@@ -48,21 +48,21 @@ public class PlayerBehavior : MonoBehaviour
 
     public void TakeDamage(int dmg)
     {
+		// DEAL DAMAGE TO THE PLAYER
         CurrentHeath -= dmg;
-        if (CurrentHeath <= 0)
-            Destroy(this.gameObject);
         CurrentHeath = Mathf.Clamp(CurrentHeath, 0, MaxHeath);
         print("Player Took " + dmg + ", Health at " + CurrentHeath);
 
-        var go = GameObject.FindWithTag("MainCamera");
-        if (null != go)
-            go.GetComponent<FollowPlayer1>().Shake(.02f, 1f);
+		// SHAKE THE CAMERA
+		var go = GameObject.FindWithTag("MainCamera");
+		if (null != go)
+			go.GetComponent<FollowPlayer1>().Shake(.02f, 2f);
+
+		// KILL THE PLAYER
+		if (CurrentHeath <= 0)
+			Destroy(this.gameObject); // TODO: DON'T DESTROY, DO SOMETHING BETTER
     }
-
-
-
-
-
+	
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag.Contains("GoldCoin"))

@@ -25,7 +25,7 @@ public class FollowPlayer1 : MonoBehaviour
 
 	private void LateUpdate()
 	{
-		this.transform.position = Vector3.Lerp(this.transform.position, ShakePosition + targetPosition, FollowLerp);
+		this.transform.position = Vector3.Lerp(this.transform.position, ShakeTargetPosition + targetPosition, FollowLerp);
 		CheckBounds();
 	}
 
@@ -93,32 +93,32 @@ public class FollowPlayer1 : MonoBehaviour
 	#region SHAKE
 
 	// How long the object should shake for.
-	public float mShake;
+	public float ShakeSeconds;
 
 	// Amplitude of the shake. A larger value shakes the camera harder.
-	public float mShakeAmount;
-	public float mDecreaseFactor = .1f;
+	public float ShakeMagnitude;
+	public const float SHAKE_DECREASE_FACTOR = .1f;
 
-	protected Vector3 ShakePosition;
+	protected Vector3 ShakeTargetPosition;
 	
-    public void Shake(float shake, float amount)
+    public void Shake(float seconds, float magnitude)
     {
-        mShake = shake;
-        mShakeAmount = amount;
+        ShakeSeconds = seconds;
+        ShakeMagnitude = magnitude;
         StartCoroutine(ShakeCamera());
     }
 
     protected IEnumerator ShakeCamera()
     {
-        while (mShake > 0)
+        while (ShakeSeconds > 0)
         {
-            ShakePosition = Random.insideUnitSphere.normalized * mShakeAmount * Time.timeScale;
-            mShake -= Time.deltaTime * mDecreaseFactor;
-            if (Time.deltaTime <= 0 || mShake <= 0)
-                mShake = 0;
+            ShakeTargetPosition = Random.insideUnitSphere.normalized * ShakeMagnitude * Time.timeScale;
+            ShakeSeconds -= Time.deltaTime * SHAKE_DECREASE_FACTOR;
+            if (Time.deltaTime <= 0 || ShakeSeconds <= 0)
+                ShakeSeconds = 0;
             yield return new WaitForSeconds(0);
         }
-        ShakePosition = new Vector3(0, 0, 0);
+        ShakeTargetPosition = new Vector3(0, 0, 0);
         yield return null;
     }
 
