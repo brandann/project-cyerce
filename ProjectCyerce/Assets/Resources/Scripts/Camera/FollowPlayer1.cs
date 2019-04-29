@@ -4,64 +4,103 @@ using UnityEngine;
 
 public class FollowPlayer1 : MonoBehaviour
 {
+	Camera camera;
+	// Start is called before the first frame update
+	void Start()
+	{
+		camera = this.GetComponent<Camera>();
+		float vertExtent = camera.orthographicSize;
+		float horzExtent = vertExtent * Screen.width / Screen.height;
+		leftBound = (float)(horzExtent - spriteBounds.localScale.x / 2.0f);
+		rightBound = (float)(spriteBounds.localScale.x / 2.0f - horzExtent);
+		bottomBound = (float)(vertExtent - spriteBounds.localScale.y / 2.0f);
+		topBound = (float)(spriteBounds.localScale.y / 2.0f - vertExtent);
+	}
 
-    public Transform player1Transform;
-    protected const string PLAYER1_TAG = "Player/player1";
+	// Update is called once per frame
+	void Update()
+	{
+		FollowPlayers();
+	}
 
-    protected Vector3 targetPosition;
+	private void LateUpdate()
+	{
+		this.transform.position = Vector3.Lerp(this.transform.position, ShakePosition + targetPosition, FollowLerp);
+		CheckBounds();
+	}
 
-    public float FollowLerp;
+	#region FOLLOW
+	public Transform player1Transform;
+	protected const string PLAYER1_TAG = "Player/player1";
+	protected Vector3 targetPosition;
+	public float FollowLerp;
 
-    // How long the object should shake for.
-    public float mShake;
+	protected Transform Player1Transform
+	{
+		get
+		{
+			if (null == player1Transform)
+			{
+				var go = GameObject.FindWithTag(PLAYER1_TAG);
+				if (null != go)
+					player1Transform = go.transform;
+			}
+			return player1Transform;
+		}
+	}
 
-    // Amplitude of the shake. A larger value shakes the camera harder.
-    public float mShakeAmount;
-    public float mDecreaseFactor = .1f;
+	private void FollowPlayers()
+	{
+		if (null != Player1Transform)
+			targetPosition = Player1Transform.position;
+		else
+			targetPosition = new Vector3(0, 0, 0);
 
-    protected Vector3 ShakePosition;
+		targetPosition.z = -10;
+	}
+	#endregion
 
-    protected Transform Player1Transform
-    {
-        get
-        {
-            if (null == player1Transform)
-            {
-                var go = GameObject.FindWithTag(PLAYER1_TAG);
-                if (null != go)
-                    player1Transform = go.transform;
-            }
-            return player1Transform;
-        }
-    }
+	#region BOUNDS
+	private float rightBound;
+	private float leftBound;
+	private float topBound;
+	private float bottomBound;
+	private Vector3 pos;
+	public Transform spriteBounds;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	private void CheckBounds()
+	{
 
-    // Update is called once per frame
-    void Update()
-    {
-        FollowPlayers();
-    }
+		//if (Left(this.transform, CAMERA_FACTOR_16_9 * this.GetComponent<Camera>().orthographicSize) < Left(CameraBounds, CameraBounds.localScale.x))
+		//{
+		//	print("CAMERA IS LEFT");
+		//	var vec = new Vector3(Left(CameraBounds, CameraBounds.localScale.x), 0, 0);
+		//	this.transform.position += vec;
+		//}
 
-    private void LateUpdate()
-    {
-        this.transform.position = Vector3.Lerp(this.transform.position, ShakePosition + targetPosition, FollowLerp);
-    }
+		var pos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+		pos.x = Mathf.Clamp(pos.x, leftBound, rightBound);
+		pos.y = Mathf.Clamp(pos.y, bottomBound, topBound);
+		transform.position = pos;
+	}
 
-    private void FollowPlayers()
-    {
-        if (null != Player1Transform)
-            targetPosition = Player1Transform.position;
-        else
-            targetPosition = new Vector3(0, 0, 0);
+	private float Left(Transform p, float w)
+	{
+		return p.position.x - (p.localScale.x / 2);
+	}
+	#endregion
 
-        targetPosition.z = -10;
-    }
+	#region SHAKE
 
+	// How long the object should shake for.
+	public float mShake;
+
+	// Amplitude of the shake. A larger value shakes the camera harder.
+	public float mShakeAmount;
+	public float mDecreaseFactor = .1f;
+
+	protected Vector3 ShakePosition;
+	
     public void Shake(float shake, float amount)
     {
         mShake = shake;
@@ -82,4 +121,6 @@ public class FollowPlayer1 : MonoBehaviour
         ShakePosition = new Vector3(0, 0, 0);
         yield return null;
     }
+
+	#endregion
 }
