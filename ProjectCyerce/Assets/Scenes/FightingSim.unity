@@ -119,6 +119,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1906881299899022, guid: e9ea79e37d50046b98ffc7d488ebf893, type: 3}
+      propertyPath: m_Name
+      value: SnakeHead (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1906881299899022, guid: e9ea79e37d50046b98ffc7d488ebf893, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4188911845339828, guid: e9ea79e37d50046b98ffc7d488ebf893, type: 3}
       propertyPath: m_LocalPosition.x
       value: -14.4
@@ -162,14 +170,6 @@ PrefabInstance:
     - target: {fileID: 4188911845339828, guid: e9ea79e37d50046b98ffc7d488ebf893, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1906881299899022, guid: e9ea79e37d50046b98ffc7d488ebf893, type: 3}
-      propertyPath: m_Name
-      value: SnakeHead (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1906881299899022, guid: e9ea79e37d50046b98ffc7d488ebf893, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9ea79e37d50046b98ffc7d488ebf893, type: 3}
@@ -482,6 +482,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3193655665301288847, guid: 877c7554c7f74404ab7c0fbb0c57f44f,
+        type: 3}
+      propertyPath: m_Name
+      value: BreakableBox
+      objectReference: {fileID: 0}
+    - target: {fileID: 3193655665301288847, guid: 877c7554c7f74404ab7c0fbb0c57f44f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Box/Breakable
+      objectReference: {fileID: 0}
     - target: {fileID: 3193655665301288843, guid: 877c7554c7f74404ab7c0fbb0c57f44f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -546,16 +556,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3193655665301288847, guid: 877c7554c7f74404ab7c0fbb0c57f44f,
-        type: 3}
-      propertyPath: m_Name
-      value: BreakableBox
-      objectReference: {fileID: 0}
-    - target: {fileID: 3193655665301288847, guid: 877c7554c7f74404ab7c0fbb0c57f44f,
-        type: 3}
-      propertyPath: m_TagString
-      value: Box/Breakable
       objectReference: {fileID: 0}
     - target: {fileID: 3193655665301288842, guid: 877c7554c7f74404ab7c0fbb0c57f44f,
         type: 3}
@@ -707,6 +707,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3193655665301288847, guid: 877c7554c7f74404ab7c0fbb0c57f44f,
+        type: 3}
+      propertyPath: m_Name
+      value: BreakableBox (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3193655665301288847, guid: 877c7554c7f74404ab7c0fbb0c57f44f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Box/Breakable
+      objectReference: {fileID: 0}
     - target: {fileID: 3193655665301288843, guid: 877c7554c7f74404ab7c0fbb0c57f44f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -772,16 +782,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3193655665301288847, guid: 877c7554c7f74404ab7c0fbb0c57f44f,
-        type: 3}
-      propertyPath: m_Name
-      value: BreakableBox (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 3193655665301288847, guid: 877c7554c7f74404ab7c0fbb0c57f44f,
-        type: 3}
-      propertyPath: m_TagString
-      value: Box/Breakable
-      objectReference: {fileID: 0}
     - target: {fileID: 3193655665301288842, guid: 877c7554c7f74404ab7c0fbb0c57f44f,
         type: 3}
       propertyPath: GoldCoinPrefab
@@ -811,7 +811,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &764687351
 RectTransform:
   m_ObjectHideFlags: 0
@@ -999,7 +999,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &936231962
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1063,6 +1063,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1906881299899022, guid: e9ea79e37d50046b98ffc7d488ebf893, type: 3}
+      propertyPath: m_Name
+      value: SnakeHead
+      objectReference: {fileID: 0}
     - target: {fileID: 4188911845339828, guid: e9ea79e37d50046b98ffc7d488ebf893, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.776822
@@ -1107,10 +1111,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1906881299899022, guid: e9ea79e37d50046b98ffc7d488ebf893, type: 3}
-      propertyPath: m_Name
-      value: SnakeHead
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9ea79e37d50046b98ffc7d488ebf893, type: 3}
 --- !u!1001 &1163012458
@@ -1120,6 +1120,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3193655665301288847, guid: 877c7554c7f74404ab7c0fbb0c57f44f,
+        type: 3}
+      propertyPath: m_Name
+      value: BreakableBox (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3193655665301288847, guid: 877c7554c7f74404ab7c0fbb0c57f44f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Box/Breakable
+      objectReference: {fileID: 0}
     - target: {fileID: 3193655665301288843, guid: 877c7554c7f74404ab7c0fbb0c57f44f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1184,16 +1194,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3193655665301288847, guid: 877c7554c7f74404ab7c0fbb0c57f44f,
-        type: 3}
-      propertyPath: m_Name
-      value: BreakableBox (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 3193655665301288847, guid: 877c7554c7f74404ab7c0fbb0c57f44f,
-        type: 3}
-      propertyPath: m_TagString
-      value: Box/Breakable
       objectReference: {fileID: 0}
     - target: {fileID: 3193655665301288842, guid: 877c7554c7f74404ab7c0fbb0c57f44f,
         type: 3}
@@ -1434,6 +1434,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1564294897, guid: c16b542c123b74b4ea9bc760526ea96a, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4125795957081782343, guid: c16b542c123b74b4ea9bc760526ea96a,
         type: 3}
       propertyPath: m_havePropertiesChanged
@@ -1443,6 +1447,40 @@ PrefabInstance:
         type: 3}
       propertyPath: m_isInputParsingRequired
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 231405253, guid: c16b542c123b74b4ea9bc760526ea96a, type: 3}
+      propertyPath: m_Value
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 231405253, guid: c16b542c123b74b4ea9bc760526ea96a, type: 3}
+      propertyPath: m_MaxValue
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 439562231, guid: c16b542c123b74b4ea9bc760526ea96a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 40aa527ce2caf4048a9d0f4a8edc1cad,
+        type: 3}
+    - target: {fileID: 439562231, guid: c16b542c123b74b4ea9bc760526ea96a, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 439562231, guid: c16b542c123b74b4ea9bc760526ea96a, type: 3}
+      propertyPath: m_Color.a
+      value: 0.38431373
+      objectReference: {fileID: 0}
+    - target: {fileID: 1564294898, guid: c16b542c123b74b4ea9bc760526ea96a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 40aa527ce2caf4048a9d0f4a8edc1cad,
+        type: 3}
+    - target: {fileID: 1564294898, guid: c16b542c123b74b4ea9bc760526ea96a, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1564294898, guid: c16b542c123b74b4ea9bc760526ea96a, type: 3}
+      propertyPath: m_FillAmount
+      value: 0.6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c16b542c123b74b4ea9bc760526ea96a, type: 3}
@@ -1795,7 +1833,7 @@ Transform:
   m_GameObject: {fileID: 1604635979}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1}
-  m_LocalScale: {x: 36, y: 36, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 1370328966}
   m_RootOrder: 0
@@ -1858,12 +1896,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 40aa527ce2caf4048a9d0f4a8edc1cad, type: 3}
+  m_Sprite: {fileID: 21300108, guid: a1767bccb61d34357bc5386d03383860, type: 3}
   m_Color: {r: 0.6698113, g: 0.6698113, b: 0.6698113, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 2.56, y: 2.56}
+  m_DrawMode: 2
+  m_Size: {x: 12, y: 12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1876,6 +1914,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3193655665301288847, guid: 877c7554c7f74404ab7c0fbb0c57f44f,
+        type: 3}
+      propertyPath: m_Name
+      value: BreakableBox (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3193655665301288847, guid: 877c7554c7f74404ab7c0fbb0c57f44f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Box/Breakable
+      objectReference: {fileID: 0}
     - target: {fileID: 3193655665301288843, guid: 877c7554c7f74404ab7c0fbb0c57f44f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1940,16 +1988,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.x
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3193655665301288847, guid: 877c7554c7f74404ab7c0fbb0c57f44f,
-        type: 3}
-      propertyPath: m_Name
-      value: BreakableBox (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 3193655665301288847, guid: 877c7554c7f74404ab7c0fbb0c57f44f,
-        type: 3}
-      propertyPath: m_TagString
-      value: Box/Breakable
       objectReference: {fileID: 0}
     - target: {fileID: 3193655665301288842, guid: 877c7554c7f74404ab7c0fbb0c57f44f,
         type: 3}
@@ -2214,7 +2252,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1890253429
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2309,6 +2347,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 372615203}
     m_Modifications:
+    - target: {fileID: 7353168003134357293, guid: 3d9045742c0574429a0de9258c65f6b0,
+        type: 3}
+      propertyPath: m_Name
+      value: GoldPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 7353168003134357293, guid: 3d9045742c0574429a0de9258c65f6b0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7353168003134357292, guid: 3d9045742c0574429a0de9258c65f6b0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2414,16 +2462,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: -0.1
       objectReference: {fileID: 0}
-    - target: {fileID: 7353168003134357293, guid: 3d9045742c0574429a0de9258c65f6b0,
-        type: 3}
-      propertyPath: m_Name
-      value: GoldPanel
-      objectReference: {fileID: 0}
-    - target: {fileID: 7353168003134357293, guid: 3d9045742c0574429a0de9258c65f6b0,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7353168003106424936, guid: 3d9045742c0574429a0de9258c65f6b0,
         type: 3}
       propertyPath: m_havePropertiesChanged
@@ -2453,7 +2491,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2104863182
 RectTransform:
   m_ObjectHideFlags: 0

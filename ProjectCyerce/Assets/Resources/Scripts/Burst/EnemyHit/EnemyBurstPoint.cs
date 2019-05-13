@@ -22,11 +22,15 @@ public class EnemyBurstPoint : MonoBehaviour
 	// MIN SIZE OF THE GAMEOBJECT BEFORE BEING DESTROYED
 	private float MIN_SIZE = 0.1f;
 
+	// REF TO THE TRAIL RENDERER
+	private TrailRenderer trailRenderer;
+
 	void Start()
 	{
 		mSpeed = Random.Range(RandomSpeedRange[0], RandomSpeedRange[1]);
 		mDecay = Random.Range(RandomDecayRate[0], RandomDecayRate[1]);
 		mDecay = Mathf.Clamp(mDecay, .001f, .999f);
+		trailRenderer = this.GetComponent<TrailRenderer>();
 	}
 
 	void Update()
@@ -44,5 +48,6 @@ public class EnemyBurstPoint : MonoBehaviour
 
 		// SCALE THE GAMEOBJECT DOWN BASED ON THE DECAY RATE
 		this.transform.localScale *= mDecay;
+		trailRenderer.startWidth = this.transform.localScale.x;
 	}
 }
