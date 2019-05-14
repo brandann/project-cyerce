@@ -73,7 +73,12 @@ public class PlayerBehavior : MonoBehaviour
                 GoldValue += go.GoldValue;
                 Destroy(collision.gameObject);
             }
-
+        }
+        else if(collision.tag.Contains("Health"))
+        {
+            CurrentHeath++;
+            CurrentHeath = Mathf.Clamp(CurrentHeath, 0, MaxHeath);
+            Destroy(collision.gameObject);
         }
     }
 }

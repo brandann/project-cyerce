@@ -61,7 +61,7 @@ public abstract class EnemyBase : MonoBehaviour
 
     // DROPS -------------------------------------------
     public GameObject GoldCoinPrefab; // GOLD COIN TO DROP WHEN ENEMY DIES
-    //pulbic GameObject HeartPrefab;
+    public GameObject HeartPrefab;
 
     // ABSTRACT -------------------------------------------
     protected abstract void UpdateStateOff();
@@ -70,7 +70,7 @@ public abstract class EnemyBase : MonoBehaviour
 
     // DROP -------------------------------------------
     private readonly int[] Drop_Health_Range = { 0, 5 };
-    private readonly int[] Drop_Gold_Range = { 6, 75 };
+    private readonly int[] Drop_Gold_Range = { 5, 20 };
     private readonly int[] GoldDrop = { 10, 9, 9, 8, 8, 8, 7, 7, 7, 7, 5, 5, 5, 5, 5, 4, 4, 4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
 
     #region unity
@@ -221,6 +221,9 @@ public abstract class EnemyBase : MonoBehaviour
     protected void DropHealth()
     {
         print("Drop Health");
+        var go = Instantiate(HeartPrefab);
+        var pos = this.transform.position + (Random.insideUnitSphere);
+        go.transform.position = pos;
     }
 
     protected void DropGold()

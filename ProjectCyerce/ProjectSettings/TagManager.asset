@@ -20,6 +20,7 @@ TagManager:
   - Map/ShopOStartNode
   - UI/ManaSlider
   - Enemy/Archer
+  - Health/Apple
   layers:
   - Default
   - TransparentFX
